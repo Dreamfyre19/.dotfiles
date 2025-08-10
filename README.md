@@ -10,6 +10,8 @@ some stuff you need:
 
 -zoxide
 
+-wallust
+
 -thefuck (lol)
 
 -hyprlock
