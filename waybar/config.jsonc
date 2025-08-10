@@ -1,152 +1,130 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 45,
-  "spacing": 0,
+  "autohide": true,
+  "autohide-blocked": false,
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  /* === Modules Order === */
   "modules-left": [
-    "hyprland/workspaces",
-    "tray",
-    "custom/lock",
-    "custom/reboot",
-    "custom/power",
-    "clock"
-  ],
-  "modules-center": ["hyprland/window"],
-  "modules-right": [
-    "network",
-    "battery",
-    "bluetooth",
-    "pulseaudio",
-    "backlight",
-    "custom/temperature",
+    "custom/archicon",
+    "clock",
+    "cpu",
     "memory",
-    "cpu"
+    "disk",
+    "temperature"
   ],
-  "hyprland/workspaces": {
-    "disable-scroll": false,
-    "all-outputs": true,
-    "format": "{icon}",
-    "on-click": "activate",
-    "persistent-workspaces": {
-    "*":[1,2,3,4,5,6,7]
-    },
-    "format-icons":{
-    "1": "",
-    "2": "",
-    "3": "",
-    "4": "",
-    "5": "",
-    "6": "",
-    "7": "",
-    "active": "󰣇"
-    }
-  },
-  "custom/lock": {
-  "format": "  ",
-  "on-click": "hyprlock",
-  "tooltip": true,
-  "tooltip-format": "锁屏"
-  },
-  "custom/reboot": {
-    "format": "  ",
-    "on-click": "systemctl reboot",
-    "tooltip": true,
-    "tooltip-format": "重启"
-  },
-  "custom/power": {
-    "format": "  ",
-    "on-click": "systemctl poweroff",
-    "tooltip": true,
-    "tooltip-format": "关机"
-  },
-  "network": {
-    "format-wifi": " 󰤨 {essid} ",
-    "format-ethernet": " Wired ",
-    "tooltip-format": "<span color='#FF1493'> 󰅧 </span>{bandwidthUpBytes}  <span color='#00BFFF'> 󰅢 </span>{bandwidthDownBytes}",
-    "format-linked": " 󱘖 {ifname} (No IP) ",
-    "format-disconnected": "  Disconnected ",
-    "format-alt": " 󰤨 {signalStrength}% ",
-    "interval": 1
-  },
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "format": " {icon} {capacity}% ",
-    "format-charging": " 󱐋{capacity}%",
-	  "interval": 1,
-    "format-icons": ["󰂎", "󰁼", "󰁿", "󰂁", "󰁹"],
-    "tooltip": true
-  },
-  "pulseaudio": {
-    "format": "{icon}{volume}% ",
-    "format-muted": " 󰖁 0% ",
-    "format-icons": {
-      "headphone": "  ",
-      "hands-free": "  ",
-      "headset": "  ",
-      "phone": "  ",
-      "portable": "  ",
-      "car": "  ",
-      "default": [
-        "  ",
-        "  ",
-        "  "
-      ]
-    },
-    "on-click-right": "pavucontrol -t 3",
-    "on-click": "pactl -- set-sink-mute 0 toggle",
-    "tooltip": true,
-    "tooltip-format": "当前系统声音: {volume}%"
-  },
-  "custom/temperature": {
-    "exec": "sensors | awk '/^Package id 0:/ {print int($4)}'",
-    "format": " {}°C ",
-    "interval": 5,
-    "tooltip": true,
-    "tooltip-format": "当前 CPU 温度: {}°C"
-  },
-  "memory": {
-    "format": "  {used:0.1f}G/{total:0.1f}G ",
-    "tooltip": true,
-    "tooltip-format": "当前内存占比: {used:0.2f}G/{total:0.2f}G"
-  },
-  "cpu": {
-    "format": "  {usage}% ",
-    "tooltip": true
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+ 
+  "modules-right": [
+    "wlr/taskbar",
+    "idle_inhibitor",
+    "pulseaudio_slider",
+    "pulseaudio",
+    "network",
+    "hyprland/language"
+  ],
+  /* === Modules Left === */
+  "custom/archicon": {
+    "format": "󰣇",
+    "on-click": "wofi --show drun",
+    "tooltip": false
   },
   "clock": {
-    "interval": 1,
-    "timezone": "Asia/Chengdu",
-    "format": "  {:%H:%M} ",
-    "tooltip": true,
-    "tooltip-format": "{:L%Y 年 %m 月 %d 日, %A}"
+    "timezone": "America/Mexico_City",
+    "format": "{:%I:%M  %d, %m}",
+    "tooltip-format": "{calendar}",
+    "calendar": {
+      "mode": "month"
+    }
   },
-  "tray": {
-    "icon-size": 17,
-    "spacing": 6
-  },
-  "backlight": {
-    "device": "intel_backlight",
-    "format": "{icon}{percent}% ",
+  "cpu": {
+    "format": "{usage}% ",
     "tooltip": true,
-    "tooltip-format": "当前屏幕亮度: {percent}%",
+    "tooltip-format": "Uso de CPU: {usage}%\nNúcleos: {cores}"
+  },
+  "memory": {
+    "format": "{}% 󰍛",
+    "tooltip": true,
+    "tooltip-format": "RAM en uso: {used} / {total} ({percentage}%)"
+  },
+  "disk": {
+    "format": "{percentage_free}% ",
+    "tooltip": true,
+    "tooltip-format": "Espacio libre: {free} / {total} ({percentage_free}%)"
+  },
+  "temperature": {
+    "format": "{temperatureC}°C {icon}",
+    "tooltip": true,
+    "tooltip-format": "Temperatura actual: {temperatureC}°C\nCrítico si > 80°C",
     "format-icons": [
-      " 󰃞 ",  // 暗 - 深灰
-      " 󰃝 ",  // 中 - 灰
-      " 󰃟 ",  // 亮 - 柠檬黄
-      " 󰃠 "   // 最亮 - 金色
+      ""
     ]
   },
-  "bluetooth": {
-    "format": "  {status} ",
-    "format-connected": "  {device_alias} ",
-    "format-connected-battery": "  {device_alias}{device_battery_percentage}% ",
-    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+  /* === Modules Center === */
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "active": ""
+    },
+    "persistent-workspaces": {
+      "*": 4
+    },
+    "disable-scroll": true,
+    "all-outputs": true,
+    "show-special": true
+  },
+  /* === Modules Right === */
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "all-outputs": true,
+    "active-first": true,
+    "tooltip-format": "{name}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": [
+      "rofi"
+    ]
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "pulseaudio_slider": {
+    "format": "{volume}%",
+    "tooltip": false,
+    "on-click": "pavucontrol"
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-muted": " {format_source}",
+    "format-icons": {
+      "default": [
+        "",
+        ""
+      ]
+    }
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-ethernet": "{ifname} 󰈀",
+    "format-disconnected": " ",
+    "tooltip-format": " {ifname} via {gwaddr}",
+    "tooltip-format-ethernet": " {ifname} {ipaddr}/{cidr}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+  },
+  "hyprland/language": {
+    "format": "{} ",
+    "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next",
+    "format-es": "ESP",
+    "format-en": "ENG"
   }
 }
-

@@ -23,9 +23,10 @@ return {
           {
             pane = 2,
             section = "terminal",
-            cmd = "chafa  ~/.config/nvim/lua/plugins/Ultrakill.jpeg -f symbols --passthrough=tmux --clear -c full --scale=3 --stretch",
+            cmd =
+            "chafa  ~/.config/nvim/lua/plugins/Ultrakill.jpeg -f symbols --passthrough=tmux --clear -c full --scale=3 --stretch",
             height = 30,
-            width = 50,
+            width = 40,
             padding = 1,
           },
           {
@@ -35,7 +36,7 @@ return {
             height = 25,
             padding = 1,
           },
-          { section = "keys", gap = 1, padding = 1 },
+          { section = "keys",   gap = 1, padding = 1 },
           function()
             local in_git = Snacks.git.get_root() ~= nil
             local cmds = {}
@@ -579,8 +580,8 @@ return {
           Snacks.toggle.diagnostics():map("<leader>ud")
           Snacks.toggle.line_number():map("<leader>ul")
           Snacks.toggle
-            .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
-            :map("<leader>uc")
+              .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+              :map("<leader>uc")
           Snacks.toggle.treesitter():map("<leader>uT")
           Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
           Snacks.toggle.inlay_hints():map("<leader>uh")

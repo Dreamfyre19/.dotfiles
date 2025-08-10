@@ -1,0 +1,31 @@
+/* CSS variables for wallust
+ * You can use this template by adding the following to wallust.toml:
+css = { src = "wofi.css", dst = "~/.config/wofi/colors.css" }
+ */
+
+:root {
+    --wallpaper: url("/home/saatvik333/Pictures/Wallpapers/Nord/nord-kurzgesagt-blackhole.png");
+
+    /* Special */
+    --background: #0E0F13;
+    --foreground: #B6B8BC;
+    --cursor: #C2BAC7;
+
+    /* Colors */
+    --color0:  #3E3931;
+    --color1:  #5D626B;
+    --color2:  #A26D77;
+    --color3:  #677AB5;
+    --color4:  #8AC3CF;
+    --color5:  #CEBDD2;
+    --color6:  #E9CF9D;
+    --color7:  #8E9197;
+    --color8:  #63666A;
+    --color9:  #5D626B;
+    --color10: #A26D77;
+    --color11: #677AB5;
+    --color12: #8AC3CF;
+    --color13: #CEBDD2;
+    --color14: #E9CF9D;
+    --color15: #8E9197;
+}
