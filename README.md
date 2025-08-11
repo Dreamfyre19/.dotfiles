@@ -18,6 +18,8 @@ some stuff you need:
 
 -starship
 
+-wlogout
+
 -chafa (neovim)
 
 -img2art (neovim) side note: must download through pipx
