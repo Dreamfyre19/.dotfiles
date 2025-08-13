@@ -1,4 +1,3 @@
-
 #!/bin/zsh
 
 THEME_NAME="$1"
@@ -32,7 +31,7 @@ if [ -f "$THEME_DIR/ascii.txt" ]; then
 fi
 
 # Set wallpaper with swww (supports .jpg and .png)
-if command -v swww &> /dev/null; then
+if command -v swww &>/dev/null; then
   if [ -f "$THEME_DIR/wallpaper.jpg" ]; then
     WALLPAPER="$THEME_DIR/wallpaper.jpg"
   elif [ -f "$THEME_DIR/wallpaper.png" ]; then
@@ -49,4 +48,3 @@ hyprctl reload
 killall waybar && waybar &
 
 notify-send "Theme Switched" "Applied theme: $THEME_NAME"
-
